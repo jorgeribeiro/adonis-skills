@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge"> 
-  {{ style('style') }} 
+  {{ style('style') }}
   
   @!section('extracss')
 
@@ -20,8 +20,13 @@
     <nav>
       <ul>
         <li><a href="/">Jobs</a></li>
+        @loggedIn
+        <li><a href="/post-a-job">My Jobs</a></li>
+        <li><a href="/logout">Logout</a></li>
+        @else
         <li><a href="/login">Login</a></li>
         <li><a href="/signup">Signup</a></li>
+        @endloggedIn
       </ul>
     </nav>
   </header>
