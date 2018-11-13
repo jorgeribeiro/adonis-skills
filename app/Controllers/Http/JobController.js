@@ -3,13 +3,15 @@
 const Job = use('App/Models/Job')
 
 class JobController {
-  async home({ view }) {    
+    async home({ view }) {
 
-    // Fetch jobs
-    const jobs = await Job.all();
+        // Fetch jobs
+        const jobs = await Job.all();
 
-    return view.render('index', { jobs: jobs.toJSON() })
-  }
+        return view.render('index', { jobs: jobs.toJSON() })
+    }
+
+    
 }
 
 module.exports = JobController
