@@ -25,13 +25,15 @@ Route.post("/signup", "UserController.create").validator("CreateUser");
 Route.post("/login", "UserController.login").validator("LoginUser");
 
 Route.get("/logout", async ({ auth, response }) => {
-  await auth.logout();
-  return response.redirect("/");
+    await auth.logout();
+    return response.redirect("/");
 });
 
 Route.get("/post-a-job", "JobController.userIndex");
-Route.get("/post-a-job/delete/:id", "JobController.delete");
-Route.get("/post-a-job/edit/:id", "JobController.edit");
-Route.post("/post-a-job/update/:id", "JobController.update").validator(
-  "CreateJob"
-);
+
+Route.group(() => {
+    Route.get('/delete/:id', 'JobController.delete');
+    Route.get('/edit/:id', 'JobController.edit');
+    Route.post("/post-a-job/create", "JobController.create");
+    Route.post('/update/:id', 'JobController.update').validator('CreateJob');
+}).prefix('/post-a-job');
